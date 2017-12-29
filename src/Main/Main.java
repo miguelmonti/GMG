@@ -10,5 +10,7 @@ package Main;
  * @author Mike
  */
 public class Main {
-    
+    public static void main (String maom[]){
+        
+    }
 }
