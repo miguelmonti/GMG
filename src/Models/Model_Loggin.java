@@ -1,5 +1,6 @@
 package Models;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class Model_Loggin {
     private PreparedStatement ps;
     private String sql;
     private ResultSet rs;
+    CallableStatement call;
     
     private String usuario;
     private String password;
@@ -49,11 +51,11 @@ public class Model_Loggin {
         String tipo = null;
         try {            
             conexion.Conexion();
-            sql = "SELECT tipo_usuario FROM login where usuario = ? and password = ?;";
-            ps = conexion.conexion.prepareStatement(sql);
-            ps.setString(1, usuario);
-            ps.setString(2, password);
-            rs = ps.executeQuery();
+            call = conexion.conexion.prepareCall("{CALL  validacion(?,?)}");            
+            call.setString(1, usuario);
+            call.setString(2, password);
+            call.execute();
+            rs = call.getResultSet();
             rs.next();
             setTipo(rs.getString("tipo_usuario"));            
             System.out.println(getTipo());
