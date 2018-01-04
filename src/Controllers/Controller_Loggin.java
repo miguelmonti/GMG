@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
  *
  * @author Mike
  */
+
 public class Controller_Loggin {
     
     Model_Loggin model_Loggin;
@@ -87,5 +88,6 @@ public class Controller_Loggin {
         this.model_Conexion.Conexion();        
         this.view_Loggin.setLocationRelativeTo(null);
         this.view_Loggin.setVisible(true);
+        this.view_Principal.setVisible(false);
     }
 }
